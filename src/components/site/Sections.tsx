@@ -1,9 +1,11 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import Reveal, { SectionHeading } from "./Reveal";
 import TiltCard from "./TiltCard";
 import { RegistrationDialog } from "./RegistrationDialog";
 import { playCue } from "../../lib/sound";
+import { eventDetails } from "../../data/events";
 
 /* ---------------------------------- ABOUT --------------------------------- */
 
@@ -51,14 +53,7 @@ export function About() {
 
 /* --------------------------------- EVENTS --------------------------------- */
 
-const events = [
-  { name: "Hackathon", tag: "36 HRS", desc: "Build a working product overnight with mentors on the floor." },
-  { name: "Robo Wars", tag: "ARENA", desc: "Steel, servos and sparks in the combat cage." },
-  { name: "AI Challenge", tag: "MODELS", desc: "Train, fine-tune and ship intelligence under pressure." },
-  { name: "Code Sprint", tag: "3 HRS", desc: "Lightning-fast competitive programming rounds." },
-  { name: "Gaming Arena", tag: "ESPORTS", desc: "LAN tournaments across the biggest titles." },
-  { name: "Innovation Expo", tag: "SHOWCASE", desc: "Demo your prototype to industry judges and investors." },
-];
+const events = eventDetails;
 
 export function Events() {
   return (
@@ -75,7 +70,10 @@ export function Events() {
           {events.map((e, i) => (
             <Reveal key={e.name} delay={i * 0.06}>
               <TiltCard className="h-full">
-                <div className="glass glow-border group relative h-full overflow-hidden rounded-2xl p-6">
+                <Link
+                  to="/events/$slug"
+                  params={{ slug: e.slug }}
+                  className="glass glow-border group relative block h-full overflow-hidden rounded-2xl p-6">
                   <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--violet)_45%,transparent),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="flex items-center justify-between">
                     <span className="font-display text-[10px] tracking-[0.3em] text-primary uppercase">
@@ -88,7 +86,7 @@ export function Events() {
                   <span className="mt-6 inline-flex items-center gap-2 text-[11px] tracking-[0.2em] text-primary uppercase transition-transform duration-300 group-hover:translate-x-1">
                     Enter →
                   </span>
-                </div>
+                </Link>
               </TiltCard>
             </Reveal>
           ))}

@@ -42,15 +42,18 @@ type Errors = Partial<Record<keyof Fields, string>>;
 export function RegistrationDialog({
   open,
   onOpenChange,
+  defaultEvent,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  defaultEvent?: (typeof EVENTS)[number];
 }) {
+  const initialEvent = defaultEvent ?? EVENTS[0];
   const [fields, setFields] = useState<Fields>({
     name: "",
     college: "",
     email: "",
-    event: EVENTS[0],
+    event: initialEvent,
   });
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
@@ -70,7 +73,7 @@ export function RegistrationDialog({
       // let the exit animation finish before resetting the success view
       setTimeout(() => {
         setDone(false);
-        setFields({ name: "", college: "", email: "", event: EVENTS[0] });
+        setFields({ name: "", college: "", email: "", event: initialEvent });
         setErrors({});
       }, 300);
     }
