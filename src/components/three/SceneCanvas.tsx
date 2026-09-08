@@ -43,8 +43,8 @@ const KEYS: Key[] = [
   { p: 0.42, x: 3.0, y: 0.8, z: -9, s: 0.5, o: 0.7 },
   { p: 0.58, x: 0.5, y: 2.6, z: -14, s: 0.3, o: 0 },
   { p: 0.74, x: 0, y: 0.4, z: -10, s: 0.6, o: 0 },
-  { p: 0.88, x: 0, y: 0, z: -2, s: 1.3, o: 0.9 },
-  { p: 1.0, x: 0, y: 0, z: 1.2, s: 1.75, o: 1 },
+  { p: 0.88, x: 0, y: -0.6, z: -4.5, s: 1.15, o: 0.85 },
+  { p: 1.0, x: 0, y: -1.1, z: -2.5, s: 1.5, o: 0.95 },
 ];
 
 const smoothstep = (t: number) => t * t * (3 - 2 * t);
@@ -125,12 +125,16 @@ function Core() {
     const k = sample(scroll.p);
     const g = group.current;
     if (!g) return;
+    // keep the core clear of the copy on narrow screens
+    const narrow = state.viewport.width < 7;
+    const fit = narrow ? 0.46 : 1;
+    const lift = narrow ? 2.05 * (1 - Math.min(scroll.p * 3, 1)) : 0;
 
     g.position.x = damp(g.position.x, k.x + smoothPointer.x * 0.45, 3, dt);
-    g.position.y = damp(g.position.y, k.y + smoothPointer.y * 0.3 + Math.sin(t * 0.6) * 0.08, 3, dt);
+    g.position.y = damp(g.position.y, k.y + lift + smoothPointer.y * 0.3 + Math.sin(t * 0.6) * 0.08, 3, dt);
     g.position.z = damp(g.position.z, k.z, 3, dt);
 
-    const s = k.s * (1 + Math.sin(t * 1.4) * 0.025);
+    const s = k.s * fit * (1 + Math.sin(t * 1.4) * 0.025);
     const cs = damp(g.scale.x, s, 4, dt);
     g.scale.setScalar(cs);
 

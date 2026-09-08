@@ -13,7 +13,7 @@ export function Hero() {
       <div className="grid-bg absolute inset-0 opacity-60" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,color-mix(in_oklab,var(--electric)_22%,transparent),transparent_60%)]" />
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_55%,transparent),transparent_65%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_72%,transparent),transparent_68%)] sm:bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_55%,transparent),transparent_65%)]" />
 
       <motion.div
         style={{ y: textY, opacity: textOpacity }}
@@ -32,7 +32,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30, letterSpacing: "0.4em" }}
           animate={{ opacity: 1, y: 0, letterSpacing: "0.02em" }}
           transition={{ delay: 0.35, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="neon-text mt-6 font-display text-[clamp(2.6rem,10vw,7.5rem)] leading-[0.95] font-black"
+          className="neon-text mt-6 font-display text-[clamp(2.4rem,9.5vw,7.5rem)] leading-[0.95] font-black drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
         >
           TECHFEST 2026
         </motion.h1>

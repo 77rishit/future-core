@@ -1,7 +1,9 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 import Reveal, { SectionHeading } from "./Reveal";
 import TiltCard from "./TiltCard";
+import { playCue } from "../../lib/sound";
 
 /* ---------------------------------- ABOUT --------------------------------- */
 
@@ -162,12 +164,12 @@ export function Timeline() {
                 <div className="relative">
                   <span className="absolute top-2 -left-[30px] h-3 w-3 rounded-full bg-primary shadow-[0_0_16px_var(--cyan)] sm:-left-[42px]" />
                   <div className="glass glow-border rounded-2xl p-6">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span className="font-display text-xs tracking-[0.3em] text-primary">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <span className="shrink-0 font-display text-xs tracking-[0.3em] text-primary">
                         {p.step}
                       </span>
-                      <h3 className="font-display text-xl font-bold">{p.title}</h3>
-                      <span className="ml-auto text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
+                      <h3 className="min-w-0 font-display text-lg font-bold sm:text-xl">{p.title}</h3>
+                      <span className="text-[11px] tracking-[0.2em] text-muted-foreground uppercase sm:ml-auto">
                         {p.date}
                       </span>
                     </div>
@@ -247,24 +249,30 @@ export function Stats() {
 export function FinalCta() {
   return (
     <section id="register" className="relative overflow-hidden py-32 sm:py-44">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,color-mix(in_oklab,var(--background)_88%,transparent)_78%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_78%,transparent)_0%,color-mix(in_oklab,var(--background)_55%,transparent)_45%,color-mix(in_oklab,var(--background)_92%,transparent)_80%)]" />
 
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <Reveal>
-          <h2 className="neon-text font-display text-[clamp(2rem,7vw,4.5rem)] leading-tight font-black">
+          <h2 className="neon-text font-display text-[clamp(2rem,7vw,4.5rem)] leading-tight font-black drop-shadow-[0_6px_36px_rgba(0,0,0,0.9)]">
             READY TO BUILD THE FUTURE?
           </h2>
-          <p className="mt-5 text-sm text-muted-foreground sm:text-base">
+          <p className="mt-5 text-sm text-foreground/75 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] sm:text-base">
             Registrations for TECHFEST 2026 are open. Bring a team, bring an idea.
           </p>
-          <motion.a
-            href="#top"
+          <motion.button
+            type="button"
+            onClick={() => {
+              playCue("hover");
+              toast("Registration portal opens soon", {
+                description: "Team sign-ups go live with the TECHFEST 2026 announcement.",
+              });
+            }}
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.95 }}
-            className="glow-ring mt-10 inline-block rounded-full bg-[image:var(--gradient-neon)] px-10 py-4 font-display text-xs tracking-[0.3em] text-primary-foreground uppercase"
+            className="glow-ring mt-10 inline-block rounded-full bg-[image:var(--gradient-neon)] px-10 py-4 font-display text-xs tracking-[0.3em] text-primary-foreground uppercase focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
           >
             Register Now
-          </motion.a>
+          </motion.button>
         </Reveal>
       </div>
     </section>
