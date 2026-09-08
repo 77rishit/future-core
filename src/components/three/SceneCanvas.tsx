@@ -125,12 +125,15 @@ function Core() {
     const k = sample(scroll.p);
     const g = group.current;
     if (!g) return;
+    // keep the core clear of the copy on narrow screens
+    const narrow = state.viewport.width < 7;
+    const fit = narrow ? 0.58 : 1;
 
     g.position.x = damp(g.position.x, k.x + smoothPointer.x * 0.45, 3, dt);
     g.position.y = damp(g.position.y, k.y + smoothPointer.y * 0.3 + Math.sin(t * 0.6) * 0.08, 3, dt);
     g.position.z = damp(g.position.z, k.z, 3, dt);
 
-    const s = k.s * (1 + Math.sin(t * 1.4) * 0.025);
+    const s = k.s * fit * (1 + Math.sin(t * 1.4) * 0.025);
     const cs = damp(g.scale.x, s, 4, dt);
     g.scale.setScalar(cs);
 
