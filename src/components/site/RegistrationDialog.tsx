@@ -232,8 +232,8 @@ export function RegistrationDialog({
                 <motion.button
                   type="submit"
                   disabled={submitting}
-                  whileHover={submitting ? undefined : { scale: 1.02 }}
-                  whileTap={submitting ? undefined : { scale: 0.97 }}
+                  whileHover={submitting ? {} : { scale: 1.02 }}
+                  whileTap={submitting ? {} : { scale: 0.97 }}
                   className="glow-ring mt-2 w-full rounded-full bg-[image:var(--gradient-neon)] px-8 py-3 font-display text-xs tracking-[0.3em] text-primary-foreground uppercase transition-opacity disabled:cursor-not-allowed disabled:opacity-60 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   {submitting ? "Submitting…" : "Confirm Registration"}
