@@ -394,7 +394,7 @@ function CameraRig() {
 
     const cam = state.camera;
     const p = scroll.p;
-    const targetX = smoothPointer.x * 1.1 + Math.sin(p * Math.PI) * 0.6;
+    const targetX = smoothPointer.x * 1.1;
     const targetY = smoothPointer.y * 0.7 - p * 0.8;
     const targetZ = 7 + Math.sin(p * Math.PI) * 2.2;
 
