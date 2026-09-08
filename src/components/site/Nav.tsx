@@ -61,7 +61,12 @@ export function Nav() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="relative text-xs tracking-[0.18em] text-muted-foreground uppercase transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-left hover:after:scale-x-100"
+                aria-current={active === l.href ? "true" : undefined}
+                className={`relative text-xs tracking-[0.18em] uppercase transition-colors after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:bg-primary after:transition-transform after:duration-300 hover:text-primary hover:after:origin-left hover:after:scale-x-100 ${
+                  active === l.href
+                    ? "text-primary after:origin-left after:scale-x-100"
+                    : "text-muted-foreground after:origin-right after:scale-x-0"
+                }`}
               >
                 {l.label}
               </a>
