@@ -99,7 +99,7 @@
 }
 
 @utility glass {
-  background: color-mix(in oklab, oklch(0.28 0.05 268) 32%, transparent);
+  background: color-mix(in oklab, oklch(0.20 0.05 268) 68%, transparent);
   backdrop-filter: blur(16px);
   border: 1px solid color-mix(in oklab, var(--cyan) 18%, transparent);
 }
