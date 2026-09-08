@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import SceneCanvas from "../components/three/SceneCanvas";
 import Nav from "../components/site/Nav";
 import Hero from "../components/site/Hero";
 import { About, Domains, Events, FinalCta, Footer, Stats, Timeline } from "../components/site/Sections";
