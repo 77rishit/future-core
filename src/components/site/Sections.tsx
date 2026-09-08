@@ -1,4 +1,4 @@
-import { animate, motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import EnergyCore from "../three/EnergyCore";
 import Reveal, { SectionHeading } from "./Reveal";
@@ -194,17 +194,22 @@ const stats = [
 
 function Counter({ to, suffix }: { to: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const inView = useInView(ref, { once: true, amount: 0.4 });
   const [val, setVal] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
-    const controls = animate(0, to, {
-      duration: 1.8,
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate: (v) => setVal(Math.round(v)),
-    });
-    return () => controls.stop();
+    let raf = 0;
+    const start = performance.now();
+    const duration = 1800;
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setVal(Math.round(to * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [inView, to]);
 
   return (
