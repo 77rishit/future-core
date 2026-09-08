@@ -58,7 +58,7 @@ function Index() {
         <Stats />
         <FinalCta />
         <Footer />
-      </div>
+      </motion.div>
     </main>
   );
 }
