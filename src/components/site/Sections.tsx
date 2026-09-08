@@ -164,12 +164,12 @@ export function Timeline() {
                 <div className="relative">
                   <span className="absolute top-2 -left-[30px] h-3 w-3 rounded-full bg-primary shadow-[0_0_16px_var(--cyan)] sm:-left-[42px]" />
                   <div className="glass glow-border rounded-2xl p-6">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span className="font-display text-xs tracking-[0.3em] text-primary">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <span className="shrink-0 font-display text-xs tracking-[0.3em] text-primary">
                         {p.step}
                       </span>
-                      <h3 className="font-display text-xl font-bold">{p.title}</h3>
-                      <span className="ml-auto text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
+                      <h3 className="min-w-0 font-display text-lg font-bold sm:text-xl">{p.title}</h3>
+                      <span className="text-[11px] tracking-[0.2em] text-muted-foreground uppercase sm:ml-auto">
                         {p.date}
                       </span>
                     </div>
