@@ -249,14 +249,14 @@ export function Stats() {
 export function FinalCta() {
   return (
     <section id="register" className="relative overflow-hidden py-32 sm:py-44">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,color-mix(in_oklab,var(--background)_88%,transparent)_78%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_78%,transparent)_0%,color-mix(in_oklab,var(--background)_55%,transparent)_45%,color-mix(in_oklab,var(--background)_92%,transparent)_80%)]" />
 
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <Reveal>
-          <h2 className="neon-text font-display text-[clamp(2rem,7vw,4.5rem)] leading-tight font-black">
+          <h2 className="neon-text font-display text-[clamp(2rem,7vw,4.5rem)] leading-tight font-black drop-shadow-[0_6px_36px_rgba(0,0,0,0.9)]">
             READY TO BUILD THE FUTURE?
           </h2>
-          <p className="mt-5 text-sm text-muted-foreground sm:text-base">
+          <p className="mt-5 text-sm text-foreground/75 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] sm:text-base">
             Registrations for TECHFEST 2026 are open. Bring a team, bring an idea.
           </p>
           <motion.button
