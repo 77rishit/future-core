@@ -29,15 +29,19 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="relative min-h-screen bg-background">
-      <Nav />
-      <Hero />
-      <About />
-      <Events />
-      <Domains />
-      <Timeline />
-      <Stats />
-      <FinalCta />
-      <Footer />
+      <SceneCanvas />
+      <div className="relative z-10">
+        <Nav />
+        <Hero />
+        <About />
+        <Events />
+        <Domains />
+        <Timeline />
+        <Stats />
+        <FinalCta />
+        <Footer />
+      </div>
     </main>
   );
 }
+
