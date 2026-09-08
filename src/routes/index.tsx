@@ -1,4 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import IntroGate from "../components/site/IntroGate";
 import SceneCanvas from "../components/three/SceneCanvas";
 import Nav from "../components/site/Nav";
 import Hero from "../components/site/Hero";
@@ -28,10 +31,24 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [entered, setEntered] = useState(false);
+
   return (
     <main className="relative min-h-screen bg-background">
-      <SceneCanvas />
-      <div className="relative z-10">
+      <IntroGate onEnter={() => setEntered(true)} />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: entered ? 1 : 0 }}
+        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <SceneCanvas />
+      </motion.div>
+      <motion.div
+        className="relative z-10"
+        initial={{ opacity: 0, y: 24 }}
+        animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+        transition={{ duration: 1, delay: entered ? 0.2 : 0, ease: [0.22, 1, 0.36, 1] }}
+      >
         <Nav />
         <Hero />
         <About />
@@ -41,7 +58,7 @@ function Index() {
         <Stats />
         <FinalCta />
         <Footer />
-      </div>
+      </motion.div>
     </main>
   );
 }
