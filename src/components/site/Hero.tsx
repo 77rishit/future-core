@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import EnergyCore from "../three/EnergyCore";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -8,22 +7,13 @@ export function Hero() {
 
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const coreScale = useTransform(scrollYProgress, [0, 1], [1, 1.7]);
-  const coreOpacity = useTransform(scrollYProgress, [0, 0.9], [1, 0.15]);
-  const coreY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
 
   return (
     <section ref={ref} id="top" className="relative h-[100svh] w-full overflow-hidden">
       <div className="grid-bg absolute inset-0 opacity-60" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,color-mix(in_oklab,var(--electric)_22%,transparent),transparent_60%)]" />
 
-      <motion.div
-        style={{ scale: coreScale, opacity: coreOpacity, y: coreY }}
-        className="absolute inset-0"
-      >
-        <EnergyCore className="h-full w-full" scale={0.78} />
-      </motion.div>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_72%,transparent),transparent_62%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_55%,transparent),transparent_65%)]" />
 
       <motion.div
         style={{ y: textY, opacity: textOpacity }}

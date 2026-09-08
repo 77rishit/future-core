@@ -1,6 +1,5 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import EnergyCore from "../three/EnergyCore";
 import Reveal, { SectionHeading } from "./Reveal";
 import TiltCard from "./TiltCard";
 
@@ -20,9 +19,10 @@ export function About() {
 
   return (
     <section id="about" ref={ref} className="relative overflow-hidden py-28 sm:py-36">
-      <motion.div style={{ y }} className="pointer-events-none absolute -right-24 top-10 h-[420px] w-[420px] opacity-70">
-        <EnergyCore className="h-full w-full" scale={0.55} dpr={[1, 1.2]} />
-      </motion.div>
+      <motion.div
+        style={{ y }}
+        className="pointer-events-none absolute -right-32 top-10 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--electric)_18%,transparent),transparent_70%)] blur-2xl"
+      />
 
       <div className="relative mx-auto max-w-6xl px-6">
         <SectionHeading
@@ -247,10 +247,7 @@ export function Stats() {
 export function FinalCta() {
   return (
     <section id="register" className="relative overflow-hidden py-32 sm:py-44">
-      <div className="absolute inset-0 opacity-90">
-        <EnergyCore className="h-full w-full" scale={1.25} dpr={[1, 1.3]} />
-      </div>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,var(--background)_75%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,color-mix(in_oklab,var(--background)_88%,transparent)_78%)]" />
 
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <Reveal>
