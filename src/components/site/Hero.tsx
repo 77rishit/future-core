@@ -21,8 +21,9 @@ export function Hero() {
         style={{ scale: coreScale, opacity: coreOpacity, y: coreY }}
         className="absolute inset-0"
       >
-        <EnergyCore className="h-full w-full" />
+        <EnergyCore className="h-full w-full" scale={0.78} />
       </motion.div>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_72%,transparent),transparent_62%)]" />
 
       <motion.div
         style={{ y: textY, opacity: textOpacity }}
