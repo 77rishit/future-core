@@ -1,7 +1,9 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 import Reveal, { SectionHeading } from "./Reveal";
 import TiltCard from "./TiltCard";
+import { playCue } from "../../lib/sound";
 
 /* ---------------------------------- ABOUT --------------------------------- */
 
@@ -257,14 +259,20 @@ export function FinalCta() {
           <p className="mt-5 text-sm text-muted-foreground sm:text-base">
             Registrations for TECHFEST 2026 are open. Bring a team, bring an idea.
           </p>
-          <motion.a
-            href="#top"
+          <motion.button
+            type="button"
+            onClick={() => {
+              playCue("hover");
+              toast("Registration portal opens soon", {
+                description: "Team sign-ups go live with the TECHFEST 2026 announcement.",
+              });
+            }}
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.95 }}
-            className="glow-ring mt-10 inline-block rounded-full bg-[image:var(--gradient-neon)] px-10 py-4 font-display text-xs tracking-[0.3em] text-primary-foreground uppercase"
+            className="glow-ring mt-10 inline-block rounded-full bg-[image:var(--gradient-neon)] px-10 py-4 font-display text-xs tracking-[0.3em] text-primary-foreground uppercase focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
           >
             Register Now
-          </motion.a>
+          </motion.button>
         </Reveal>
       </div>
     </section>
