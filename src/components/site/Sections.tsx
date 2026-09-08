@@ -1,8 +1,8 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
 import Reveal, { SectionHeading } from "./Reveal";
 import TiltCard from "./TiltCard";
+import { RegistrationDialog } from "./RegistrationDialog";
 import { playCue } from "../../lib/sound";
 
 /* ---------------------------------- ABOUT --------------------------------- */
@@ -247,6 +247,7 @@ export function Stats() {
 /* -------------------------------- FINAL CTA ------------------------------- */
 
 export function FinalCta() {
+  const [open, setOpen] = useState(false);
   return (
     <section id="register" className="relative overflow-hidden py-32 sm:py-44">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_78%,transparent)_0%,color-mix(in_oklab,var(--background)_55%,transparent)_45%,color-mix(in_oklab,var(--background)_92%,transparent)_80%)]" />
@@ -263,9 +264,7 @@ export function FinalCta() {
             type="button"
             onClick={() => {
               playCue("hover");
-              toast("Registration portal opens soon", {
-                description: "Team sign-ups go live with the TECHFEST 2026 announcement.",
-              });
+              setOpen(true);
             }}
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.95 }}
@@ -275,6 +274,7 @@ export function FinalCta() {
           </motion.button>
         </Reveal>
       </div>
+      <RegistrationDialog open={open} onOpenChange={setOpen} />
     </section>
   );
 }
