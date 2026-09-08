@@ -141,7 +141,7 @@ function Core() {
     g.visible = k.o > 0.02;
     for (const m of mats.current) {
       const mm = m as THREE.Material & { opacity: number; userData: { base?: number } };
-      const base = mm.userData.base ?? 1;
+      const base = (mm.userData['base'] as number | undefined) ?? 1;
       mm.opacity = base * k.o;
     }
 
@@ -156,7 +156,7 @@ function Core() {
   const collect = (m: THREE.Material | null, base: number) => {
     if (m && !mats.current.includes(m)) {
       m.transparent = true;
-      m.userData.base = base;
+      m.userData['base'] = base;
       mats.current.push(m);
     }
   };
@@ -359,7 +359,7 @@ function NeonGrid() {
 
   useFrame((state, raw) => {
     const dt = Math.min(raw, 0.05);
-    if (mat.current) mat.current.uniforms.uTime!.value = state.clock.elapsedTime;
+    if (mat.current) mat.current.uniforms['uTime']!.value = state.clock.elapsedTime;
     if (grp.current) {
       grp.current.position.y = damp(grp.current.position.y, -4 + scroll.p * 5, 2, dt);
       grp.current.rotation.z = damp(grp.current.rotation.z, smoothPointer.x * 0.05, 2, dt);
