@@ -1,8 +1,8 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
 import Reveal, { SectionHeading } from "./Reveal";
 import TiltCard from "./TiltCard";
+import { RegistrationDialog } from "./RegistrationDialog";
 import { playCue } from "../../lib/sound";
 
 /* ---------------------------------- ABOUT --------------------------------- */
