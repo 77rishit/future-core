@@ -127,10 +127,11 @@ function Core() {
     if (!g) return;
     // keep the core clear of the copy on narrow screens
     const narrow = state.viewport.width < 7;
-    const fit = narrow ? 0.58 : 1;
+    const fit = narrow ? 0.46 : 1;
+    const lift = narrow ? 2.05 * (1 - Math.min(scroll.p * 3, 1)) : 0;
 
     g.position.x = damp(g.position.x, k.x + smoothPointer.x * 0.45, 3, dt);
-    g.position.y = damp(g.position.y, k.y + smoothPointer.y * 0.3 + Math.sin(t * 0.6) * 0.08, 3, dt);
+    g.position.y = damp(g.position.y, k.y + lift + smoothPointer.y * 0.3 + Math.sin(t * 0.6) * 0.08, 3, dt);
     g.position.z = damp(g.position.z, k.z, 3, dt);
 
     const s = k.s * fit * (1 + Math.sin(t * 1.4) * 0.025);
